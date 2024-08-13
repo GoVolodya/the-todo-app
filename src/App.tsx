@@ -1,21 +1,28 @@
-import React from 'react';
-import './App.scss';
-
-interface Props {
-  onClick: () => void;
-  children: React.ReactNode;
-}
-
-export const Provider: React.FC<Props> = React.memo(({ onClick, children }) => (
-  <button type="button" onClick={onClick}>
-    {children}
-  </button>
-));
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+import React, { useContext } from 'react';
+import { Notification } from './components/Notification/Notification';
+import { Footer } from './components/Footer/Footer';
+import { Header } from './components/Header/Header';
+import { Main } from './components/Main/Main';
+import { StateContext } from './context/StateContext';
 
 export const App: React.FC = () => {
+  const { todos } = useContext(StateContext);
+
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>TodoList</Provider>
+    <div className="todoapp">
+      <h1 className="todoapp__title">todos</h1>
+
+      <div className="todoapp__content">
+        <Header />
+
+        <Main />
+
+        {!!todos.length && <Footer />}
+      </div>
+
+      <Notification />
     </div>
   );
 };

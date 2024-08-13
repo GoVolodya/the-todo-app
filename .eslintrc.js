@@ -9,4 +9,9 @@ module.exports = {
       assert: "either",
     }],
   },
+  settings: {
+    react: {
+      version: "detect"
+    }
+  }
 };
